@@ -39,13 +39,6 @@ try {
   throw
 }
 
-
-If (Get-Item "$env:ChocolateyInstall\lib-bkp\vkQuake\tools\vkQuake\vkQuake.exe" -ErrorAction SilentlyContinue) {
-	Write-Output "Migrating vkQuake location to $vkQuake_folder"
-	Move-Item "$env:ChocolateyInstall\lib-bkp\vkQuake\tools\vkQuake" "$(Get-ToolsLocation)" -Force
-	Remove-Item "$env:ChocolateyInstall\lib\vkQuake\tools\vkQuake" -Recurse -Force -ErrorAction SilentlyContinue
-}
-
 $vkQuake_latest = (Get-ChildItem $toolsPath -Recurse -ErrorAction SilentlyContinue | Where-Object {$_.Name -like 'vkquake-*'} | sort-Object {$_.CreationTime} | select-Object -First 1).FullName
 Robocopy "$vkQuake_latest" "$vkQuake_folder" /R:0 /W:0 /E /XO
 Remove-Item "$vkQuake_latest" -Recurse -Force -ErrorAction SilentlyContinue

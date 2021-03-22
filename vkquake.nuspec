@@ -8,7 +8,7 @@
     <owners>nett00n</owners>
     <licenseUrl>https://github.com/Novum/vkQuake/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/Novum/vkQuake</projectUrl>
-    <iconUrl>https://github.com/nett00n/vkQuake_chocolatey/raw/master/quake-vulkan.png</iconUrl>
+    <iconUrl>https://rawcdn.githack.com/nett00n/vkQuake_chocolatey/b5016b97892e64a240198a0bd16690b42ed441a1/quake-vulkan.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Vulkan Quake port based on QuakeSpasm </description>
     <summary>vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. It is based on the popular QuakeSpasm port and runs all mods compatible with it like Arcane Dimensions.</summary>

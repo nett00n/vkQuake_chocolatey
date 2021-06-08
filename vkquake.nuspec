@@ -1,8 +1,8 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>vkQuake</id>
-    <version>1.05.2</version>
+    <version>1.05.3</version>
     <title>vkQuake (Install)</title>
     <authors>Novum</authors>
     <owners>nett00n</owners>
@@ -11,7 +11,13 @@
     <iconUrl>https://rawcdn.githack.com/nett00n/vkQuake_chocolatey/b5016b97892e64a240198a0bd16690b42ed441a1/quake-vulkan.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Vulkan Quake port based on QuakeSpasm </description>
-    <summary>vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. It is based on the popular QuakeSpasm port and runs all mods compatible with it like Arcane Dimensions.</summary>
+    <summary>
+      vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. It is based on the popular QuakeSpasm port and runs all mods compatible with it like Arcane Dimensions. Due to the port using Vulkan and other optimizations it can achieve much better frame rates.
+
+      Compared to QuakeSpasm vkQuake also features a software Quake like underwater effect, has better color precision, generates mipmap for water surfaces at runtime and has native support for anti-aliasing and AF. Furthermore frame rates above 72FPS do not break physics.
+
+      vkQuake also serves as a Vulkan demo application that shows basic usage of the API. For example it demonstrates render passes and sub passes, pipeline barriers and synchronization, compute shaders, push and specialization constants, CPU/GPU parallelism and memory pooling.
+    </summary>
     <releaseNotes>https://github.com/Novum/vkQuake/releases</releaseNotes>
     <copyright>Novum</copyright>
     <tags>quake engine game id portable</tags>
@@ -23,3 +29,4 @@
     <file src="tools\*.ps1" target="tools"/>
   </files>
 </package>
+    

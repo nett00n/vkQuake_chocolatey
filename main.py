@@ -1,5 +1,5 @@
 from jinja2 import Template
-from re import split
+from re import split, template
 import hashlib
 import os
 import requests
@@ -45,64 +45,15 @@ def render_choco_files(latest_version, win64_url, win32_url, win64_hashsum, win3
     # print(chocolateyinstall_ps1_text)
 
 def define_nuspec_template():
-    template_text ="""<?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-  <metadata>
-    <id>vkQuake</id>
-    <version>{{ latest_version }}</version>
-    <title>vkQuake (Install)</title>
-    <authors>Novum</authors>
-    <owners>nett00n</owners>
-    <licenseUrl>https://github.com/Novum/vkQuake/blob/master/LICENSE.txt</licenseUrl>
-    <projectUrl>https://github.com/Novum/vkQuake</projectUrl>
-    <iconUrl>https://rawcdn.githack.com/nett00n/vkQuake_chocolatey/b5016b97892e64a240198a0bd16690b42ed441a1/quake-vulkan.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Vulkan Quake port based on QuakeSpasm </description>
-    <summary>
-      vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. It is based on the popular QuakeSpasm port and runs all mods compatible with it like Arcane Dimensions. Due to the port using Vulkan and other optimizations it can achieve much better frame rates.
+    with open("templates/nuspec.j2") as f:
+        template_text = f.read()
 
-      Compared to QuakeSpasm vkQuake also features a software Quake like underwater effect, has better color precision, generates mipmap for water surfaces at runtime and has native support for anti-aliasing and AF. Furthermore frame rates above 72FPS do not break physics.
-
-      vkQuake also serves as a Vulkan demo application that shows basic usage of the API. For example it demonstrates render passes and sub passes, pipeline barriers and synchronization, compute shaders, push and specialization constants, CPU/GPU parallelism and memory pooling.
-    </summary>
-    <releaseNotes>https://github.com/Novum/vkQuake/releases</releaseNotes>
-    <copyright>Novum</copyright>
-    <tags>quake engine game id portable</tags>
-    <projectSourceUrl>https://github.com/Novum/vkQuake</projectSourceUrl>
-    <packageSourceUrl>https://github.com/nett00n/vkQuake_chocolatey</packageSourceUrl>
-    <bugTrackerUrl>https://github.com/Novum/vkQuake/issues</bugTrackerUrl>
-  </metadata>
-  <files>
-    <file src="tools\\*.ps1" target="tools"/>
-  </files>
-</package>
-    """
     jinja_template = Template(template_text)
     return(jinja_template)
 
 def define_chocolateinstall_template():
-    template_text = '''$packageName = 'vkQuake'
-$toolsPath   = Split-Path $MyInvocation.MyCommand.Definition
-$vkQuake_folder = "$(Get-ToolsLocation)\\vkQuake"
-
-$packageArgs = @{
-  packageName    = $packageName
-  url64          = "{{ win64_url }}"
-  checksum64     = "{{ win64_hashsum }}"
-  url            = "{{ win32_url }}"
-  checksum       = "{{ win32_hashsum }}"
-  checksumType   = 'sha256'
-  unzipLocation  = $toolsPath
-}
-Install-ChocolateyZipPackage @packageArgs
-
-$vkQuake_latest = (Get-ChildItem $toolsPath -Recurse -ErrorAction SilentlyContinue | Where-Object {$_.Name -like 'vkquake-*'} | sort-Object {$_.CreationTime} | select-Object -First 1).FullName
-Robocopy "$vkQuake_latest" "$vkQuake_folder" /R:0 /W:0 /E /XO
-Remove-Item "$vkQuake_latest" -Recurse -Force -ErrorAction SilentlyContinue
-
-Install-ChocolateyShortcut -shortcutFilePath "$env:ALLUSERSPROFILE\\Microsoft\\Windows\\Start Menu\\Programs\\vkQuake.lnk" "$vkQuake_folder\\vkQuake.exe" -WorkingDirectory "$vkQuake_folder"
-
-    '''
+    with open("templates/chocolateyinstall.ps1.j2") as f:
+        template_text = f.read()
     jinja_template = Template(template_text)
     return(jinja_template)
 

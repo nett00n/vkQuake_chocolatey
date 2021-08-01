@@ -4,10 +4,10 @@ $vkQuake_folder = "$(Get-ToolsLocation)\vkQuake"
 
 $packageArgs = @{
   packageName    = $packageName
-  url64          = "https://github.com//Novum/vkQuake/releases/download/1.05.3/vkquake-1.05.3_win64.zip"
-  checksum64     = "52c9cfc2821d5685afca7c7494e4db2f60ae7853072d1917ae4bd2f091e39f8a"
-  url            = "https://github.com//Novum/vkQuake/releases/download/1.05.3/vkquake-1.05.3_win32.zip"
-  checksum       = "cb2c4227650fd080cd3bc861b6b97840409c8d84829f595ac25a50573108ca85"
+  url64          = "https://github.com//Novum/vkQuake/releases/download/1.10.0-beta3/vkquake-1.10.0-beta3_win64.zip"
+  checksum64     = "439c61f57f3f06b67ffbefda3bf1179621a9b8f2ba159c42921620c7f4cad6fa"
+  url            = "https://github.com//Novum/vkQuake/releases/download/1.10.0-beta3/vkquake-1.10.0-beta3_win32.zip"
+  checksum       = "a1f8d4698d70b9d6a97ae0d68b0e17caa43f04cb8b211c51703411a13c254bc5"
   checksumType   = 'sha256'
   unzipLocation  = $toolsPath
 }

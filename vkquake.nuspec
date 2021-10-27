@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>vkQuake</id>
-    <version>1.11.0</version>
+    <version>1.11.1</version>
     <title>vkQuake (Install)</title>
     <authors>Novum</authors>
     <owners>nett00n</owners>
@@ -24,6 +24,9 @@
     <projectSourceUrl>https://github.com/Novum/vkQuake</projectSourceUrl>
     <packageSourceUrl>https://github.com/nett00n/vkQuake_chocolatey</packageSourceUrl>
     <bugTrackerUrl>https://github.com/Novum/vkQuake/issues</bugTrackerUrl>
+    <dependencies>
+      <dependency id="vcredist140" />
+    </dependencies>
   </metadata>
   <files>
     <file src="tools\*.ps1" target="tools"/>

@@ -92,7 +92,7 @@ def get_latest_version_from_html(github_html_data_lines):
             continue
         if "/tag/" in line:
             test1 = line.split('"')
-            test2 = test1[1].split('/')
+            test2 = test1[5].split('/')
             version = test2[-1]
             return(version)
 

@@ -11,12 +11,19 @@ def main():
     github_user = "Novum"
     github_repo = "vkQuake"
 
+    print('running github_html_data_lines')
     github_html_data_lines = get_data_from_github(github_user, github_repo)
+    print('running latest_version')
     latest_version = get_latest_version_from_html(github_html_data_lines)
+    print('running win64_url')
     win64_url = get_download_url_from_html("win64", github_html_data_lines, latest_version)
+    print('running win32_url')
     win32_url = get_download_url_from_html("win32", github_html_data_lines, latest_version)
+    print('running win64_hashsum')
     win64_hashsum = get_sha256_from_url(win64_url)
+    print('running win32_hashsum')
     win32_hashsum = get_sha256_from_url(win32_url)
+    print('running render_choco_files')
     render_choco_files(latest_version, win64_url, win32_url, win64_hashsum, win32_hashsum)
 
 def get_sha256_from_url(url):
@@ -92,7 +99,7 @@ def get_latest_version_from_html(github_html_data_lines):
             continue
         if "/tag/" in line:
             test1 = line.split('"')
-            test2 = test1[1].split('/')
+            test2 = test1[5].split('/')
             version = test2[-1]
             return(version)
 
